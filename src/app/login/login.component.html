@@ -1,0 +1,37 @@
+<main class="main-container">
+    <div class="login-container">
+      <div class="logo">
+        <img src="/assets/img/login.png" alt="Login">
+      </div>
+
+      <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+        <div *ngIf="message">
+          <div class="notification notification-danger">
+             <div class="notification-title-wrapper">
+                 <span class="icon-warning notification-logo"></span>
+                 <span class="notification-title"><strong>Access Denied</strong></span>
+             </div>
+             <p>{{ this.message }}</p>
+           </div>
+        </div>
+        <div class="fieldset">
+          <label for="username" class="icon-person"></label>
+          <input id="username" name="username" formControlName="username" tabindex="1" placeholder="USER" type="text"
+            value="" autocomplete="off">
+          <div class="error"
+            *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Required field</div>
+        </div>
+        <div class="fieldset">
+          <label for="password" class="icon-lock"></label>
+          <input id="password" name="password" formControlName="password" tabindex="2" placeholder="PASSWORD"
+            type="password" value="" autocomplete="off">
+          <div class="error"
+            *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Required field</div>
+          <span href="#" id="iconPassword" (click)="showPassword();" class="show-password icon-visibility"></span>
+        </div>
+        <div class="fieldset">
+          <input type="submit" name="submit" [disabled]="loginForm.invalid" value="LOGIN" tabindex="4">
+        </div>
+      </form>
+    </div>
+  </main>
